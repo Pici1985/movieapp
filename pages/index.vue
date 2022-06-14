@@ -11,7 +11,13 @@
         placeholder="search" 
         @keyup.enter="$fetch"
       >
-      <button v-show="searchInput !== ''" class="button">Clear Search</button>
+      <button
+        v-show="searchInput !== ''" 
+        class="button"
+        @click="clearSearch" 
+      >
+        Clear Search
+      </button>
     </div>
 
     <!-- Movies -->
@@ -135,8 +141,12 @@ export default {
         this.searchedMovies.push(movie)
       }) 
       // console.log(this.searchedMovies)
+    },
+    clearSearch(){
+      this.searchInput = ''
+      this.searchedMovies = []
     }
-  },
+  }
 }
 </script>
 
