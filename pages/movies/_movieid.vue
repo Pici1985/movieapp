@@ -1,15 +1,38 @@
 <template>
   <div>
-      
+    <Loading v-if="$fetchState.pending"/>
+    <div v-else class="container single-movie">
+        <h1>
+          {{ this.movie.title }}  
+        </h1>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
+import axios from 'axios'
 
+export default {
+  name: 'single-movie',
+  data(){
+    return {
+      movie: null,
+    }
+  },
+  async fetch(){
+    await this.getSingleMovie() 
+  },
+  fetchDelay: 1000,
+  methods: {
+    async getSingleMovie(){
+      const data = axios.get(`https://api.themoviedb.org/3/movie/${this.$route.params.movieid}?api_key=b810837502842dbe5c8955ffa74cf870&language=en-US`)
+      const result = await data 
+      this.movie = result.data 
+    }
+  }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 </style>
