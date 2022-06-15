@@ -155,7 +155,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .home {
   .loading {
     padding-top: 120px;
